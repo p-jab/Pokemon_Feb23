@@ -1,5 +1,5 @@
 '''Task 0: Import the modules csv and random'''
-
+import csv,random
 
 def startup():    
     """
@@ -9,6 +9,7 @@ def startup():
 
     :return: Does not return anything.
     """
+    print("\t"*8, "Pokemon Trainer App")
 
 
 def options():
@@ -20,6 +21,10 @@ def options():
 
     :return: None if invalid selection otherwise an integer corresponding to a valid selection
     """
+    print("Choose an option from menu:\n1-Check your Pokemon\n2-Add a new Pokemon\n3-Show all Pokemon\n4-Visualise\n5-Save your Pokedex\n0-Exit")
+    opt = int(input("Your option: "))
+    if opt in range(0,6):
+        return opt
 
 
 def check_poke():
