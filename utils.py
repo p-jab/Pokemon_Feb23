@@ -23,7 +23,7 @@ def options():
     """
     print("Choose an option from menu:\n1-Check your Pokemon\n2-Add a new Pokemon\n3-Show all Pokemon\n4-Visualise\n5-Save your Pokedex\n0-Exit")
     opt = int(input("Your option: "))
-    if opt in range(0,6):
+    if opt in [0,1,2,3,4,5]:
         return opt
 
 
@@ -36,7 +36,10 @@ def check_poke():
 
     :return: None if an invalid selection made otherwise an integer corresponding to a valid option
     """
-
+    print("How would you like to search?:\n1-By name\n2-By type\n")
+    opt = int(input("Your option: "))
+    if opt in [1,2]:
+        return opt
 
 def add_poke():
     """
@@ -47,6 +50,11 @@ def add_poke():
 
     :return: None if an invalid selection made otherwise an integer corresponding to a valid option
     """
+    print("Who shall we add?:\n1-Add specific\n2-Add at random\n")
+    opt = int(input("Your option: "))
+    if opt in [1,2]:
+        return opt
+
 
 def visualise():
     """
@@ -57,6 +65,10 @@ def visualise():
 
     :return: None if an invalid selection made otherwise an integer corresponding to a valid option
     """
+    print("What to display?:\n1-By Generation(Pie Chart)\n2-By Type(Bar Chart)\n")
+    opt = int(input("Your option: "))
+    if opt in [1,2]:
+        return opt
 
 def by_name(p_list = []):
     

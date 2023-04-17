@@ -1,4 +1,5 @@
 from utils import *
 
 startup()
-print(options())
+if options() == 1:
+    print(check_poke())
