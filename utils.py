@@ -84,12 +84,11 @@ def by_name(p_list = []):
     :return: does not return anything
     """
     p_name = input("Enter name of Pokemon: ")
-    if p_name in p_list:
-        for pokemon in p_list:
-            if pokemon[1] == p_name:
-                print(pokemon)
-    else:
-        print(f"Sorry, {p_name} is not on the list")
+    for pokemon in p_list:
+        if pokemon[1].lower() == p_name.lower():
+            print(pokemon)
+            return
+    print(f"Sorry, {p_name} is not on the list")
 
 def by_type(p_list = []):
     
@@ -105,6 +104,12 @@ def by_type(p_list = []):
     :param p_list: A list of pokemon
     :return: does not return anything
     """
+    type = input("Enter type of Pokemon: ")
+    for pokemon in p_list:
+        if pokemon[2].lower() == type.lower() or pokemon[3].lower() == type.lower():
+            print(pokemon)
+            return
+    print(f"Sorry, no Pokemon of type {type} is on the list")
 
 def add_specific_poke():
     
@@ -118,6 +123,13 @@ def add_specific_poke():
     :param: None
     :return: A list representing a pokemon or None
     """
+    with open("pokemon_database.csv") as dtb:
+        reader = csv.reader(dtb)
+        p_name = input("Enter Pokemon name: ")
+        for pokemon in reader:
+            if pokemon[1].lower() == p_name.lower():
+                return pokemon
+        print("Pokemon does not exist!")
 
 def add_random_poke():
     
@@ -130,6 +142,13 @@ def add_random_poke():
     :param:  None
     :return: A list representing a pokemon
     """
+    with open("pokemon_database.csv") as dtb:
+        reader = csv.reader(dtb)
+        numb = random.randint(1,801)
+        poke_list = []
+        for pokemon in reader:
+            poke_list.append(pokemon)
+        return poke_list[numb]
 
 def show_all(pokedex = []):
     """
@@ -141,6 +160,8 @@ def show_all(pokedex = []):
     :param p_list: None
     :return: None
     """
+    for pokemon in pokedex:
+        print(f"Name:{pokemon[1]:10}\tType: {pokemon[2]:10} {pokemon[3]:10}\tTotal:{pokemon[4]:10}\tHP:{pokemon[5]:10}\tGeneration:{pokemon[11]:10}")
 
 def save_pokes(pokedex = []):
     """
@@ -150,6 +171,11 @@ def save_pokes(pokedex = []):
     :param p_list: pokedex: a list of pokemon
     :return: None
     """
+    with open("pokedex.csv", "w", newline="") as pdex:
+        writer = csv.writer(pdex)
+        for pokemon in pokedex:
+            writer.writerow(pokemon)
+    print("Saving complete!")
 
 def load_pokes(path):
     """
@@ -157,3 +183,9 @@ def load_pokes(path):
     :param path: A relative file path to CSV file in string format
     :return: A list of pokemon
     """
+    p_list =[]
+    with open(path) as f:
+        reader = csv.reader(f)
+        for pokemon in reader:
+            p_list.append(pokemon)
+    return p_list
