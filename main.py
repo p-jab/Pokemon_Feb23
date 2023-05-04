@@ -49,6 +49,12 @@ def run():
             show_all(pokedex)
         elif opt == 5:
             save_pokes(pokedex)
+        elif opt == 4:
+            opt2 = visualise()
+            if opt2 == 1:
+                pie_chart(pokedex)
+            elif opt2 == 2:
+                bar_chart(pokedex)
         '''
             Task 18: If user chooses to show pokemon by name, then diplay all 
             information about this particular pokemon. If user chooses to show pokemon
